@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import someshbose.github.io.liquibase.model.Users;
 
 @Repository
-public interface UserRespository extends CrudRepository<Users, Long> {
+public interface UsersRespository extends CrudRepository<Users, Long> {
 }
