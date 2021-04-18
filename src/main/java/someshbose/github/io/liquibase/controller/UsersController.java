@@ -1,6 +1,7 @@
 package someshbose.github.io.liquibase.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import someshbose.github.io.liquibase.model.Users;
@@ -17,6 +18,7 @@ public class UsersController {
         this.repo=repo;
     }
 
+    @Cacheable("users-list")
     @GetMapping
     public ResponseEntity getUsers(){
         List<Users> users = (List<Users>) repo.findAll();
