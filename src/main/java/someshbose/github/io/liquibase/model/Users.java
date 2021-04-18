@@ -1,22 +1,23 @@
 package someshbose.github.io.liquibase.model;
 
-import javax.annotation.Generated;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+@Getter
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Users {
 
     @Id
+    @SequenceGenerator(name = "USERS_SEQ", sequenceName = "USERS_SEQ", allocationSize = 5)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ")
+    @Column(name ="id")
     Long id;
 
-    @Column
+    @Column(name = "address")
     String address;
 
-    public Users(String address){
-        this.address=address;
-    }
 }
