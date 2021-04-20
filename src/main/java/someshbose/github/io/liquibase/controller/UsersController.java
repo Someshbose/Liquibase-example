@@ -7,25 +7,25 @@ import someshbose.github.io.liquibase.model.Users;
 import someshbose.github.io.liquibase.repository.UsersRespository;
 import java.util.List;
 
-@RestController
-@RequestMapping("/users")
+//@RestController
+//@RequestMapping("/users")
 public class UsersController {
-    private UsersRespository repo;
-
-    @Autowired
-    public UsersController(UsersRespository repo){
-        this.repo=repo;
-    }
-
-    @GetMapping
-    public ResponseEntity getUsers(){
-        List<Users> users = (List<Users>) repo.findAll();
-        return ResponseEntity.ok(users);
-    }
-
-    @PostMapping ResponseEntity postUser(@RequestBody Users user){
-        repo.save(user);
-        return ResponseEntity.ok(user);
-    }
+//    private UsersRespository repo;
+//
+//    @Autowired
+//    public UsersController(UsersRespository repo){
+//        this.repo=repo;
+//    }
+//
+//    @GetMapping
+//    public ResponseEntity getUsers(){
+//        List<Users> users = (List<Users>) repo.findAll();
+//        return ResponseEntity.ok(users);
+//    }
+//
+//    @PostMapping ResponseEntity postUser(@RequestBody Users user){
+//        repo.save(user);
+//        return ResponseEntity.ok(user);
+//    }
 
 }
