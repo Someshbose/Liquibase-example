@@ -18,7 +18,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Book'
+                  $ref: '#/components/schemas/BookDto'
     post:
       summary: Add a Book
       operationId: addBook
@@ -27,7 +27,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Book'
+              $ref: '#/components/schemas/BookDto'
         required: true
       responses:
         200:
@@ -39,7 +39,7 @@ paths:
       x-codegen-request-body-name: book
 components:
   schemas:
-    Book:
+    BookDto:
       type: object
       properties:
         id:
