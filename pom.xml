@@ -97,7 +97,7 @@
 							</inputSpec>
 							<generatorName>spring</generatorName>
 							<apiPackage>Someshbose.github.io.liquibase.api</apiPackage>
-							<modelPackage>Someshbose.github.io.liquibase.model</modelPackage>
+							<modelPackage>Someshbose.github.io.liquibase.dao</modelPackage>
 							<supportingFilesToGenerate>
 								ApiUtil.java
 							</supportingFilesToGenerate>
