@@ -1,12 +1,23 @@
 package someshbose.github.io.liquibase.model;
 
-import javax.persistence.*;
+import lombok.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * Book
  */
 @Entity
 @Table(name = "Book")
+@Getter
+@Setter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Book{
 
     @Id
