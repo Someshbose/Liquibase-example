@@ -16,6 +16,62 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+<!--	<profiles>-->
+<!--		<profile>-->
+<!--			<id>test-profile</id>-->
+<!--			<activation>-->
+<!--				<activeByDefault>false</activeByDefault>-->
+<!--			</activation>-->
+<!--			<properties>-->
+<!--				<h2.scope>test</h2.scope>-->
+<!--			</properties>-->
+<!--		</profile>-->
+<!--		<profile>-->
+<!--			<id>runtime-profile</id>-->
+<!--			<activation>-->
+<!--				<activeByDefault>true</activeByDefault>-->
+<!--			</activation>-->
+<!--			<properties>-->
+<!--				<h2.scope>runtime</h2.scope>-->
+<!--			</properties>-->
+<!--		</profile>-->
+<!--	</profiles>-->
+
+
+	<profiles>
+		<profile>
+			<id>oracle</id>
+			<properties>
+				<spring.profiles.active>oracle</spring.profiles.active>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>com.oracle.ojdbc</groupId>
+					<artifactId>ojdbc8</artifactId>
+					<version>19.3.0.0</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>h2</id>
+			<properties>
+				<spring.profiles.active>h2</spring.profiles.active>
+			</properties>
+			<activation>
+
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -47,11 +103,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.oracle.ojdbc</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<version>19.3.0.0</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.oracle.ojdbc</groupId>-->
+<!--			<artifactId>ojdbc8</artifactId>-->
+<!--			<version>19.3.0.0</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
@@ -84,10 +140,31 @@
 			<artifactId>modelmapper</artifactId>
 			<version>2.3.5</version>
 		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>com.h2database</groupId>-->
+<!--			<artifactId>h2</artifactId>-->
+<!--			<scope>${h2.scope}</scope>-->
+<!--		</dependency>-->
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<profiles>
+						<profile>oracle</profile>
+					</profiles>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
@@ -126,11 +203,10 @@
 <!--					<outputChangeLogFile> src/main/rresource/db/liquibase-changelog.xml</outputChangeLogFile>-->
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+
 		</plugins>
 	</build>
+
+
 
 </project>
