@@ -6,9 +6,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @Getter
-@Builder
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
 public class Users {
 
     @Id

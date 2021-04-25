@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Book Shop
-  description: Book CRUD API.
+  description: CRUD API.
   version: 1.0.0
 servers:
   - url: /v2
@@ -37,6 +37,38 @@ paths:
               schema:
                 type: string
       x-codegen-request-body-name: book
+  /users:
+    get:
+      summary: Get Users
+      operationId: getUsers
+      responses:
+        200:
+          description: Successfully operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDto'
+
+    post:
+      summary: Add User
+      operationId: addUser
+      requestBody:
+        description: User to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+        required: true
+      responses:
+        200:
+          description: User Added
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/UserDto'
 components:
   schemas:
     BookDto:
@@ -51,3 +83,13 @@ components:
         author:
           type: string
           example: Brandon Sanderson
+
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        address:
+          type: string
+          example: Random Address
