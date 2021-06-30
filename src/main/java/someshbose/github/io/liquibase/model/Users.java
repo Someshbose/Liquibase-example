@@ -4,7 +4,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "LQ_USERS")
 @Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -12,8 +12,8 @@ import javax.persistence.*;
 public class Users {
 
     @Id
-    @SequenceGenerator(name = "USERS_SEQ", sequenceName = "USERS_SEQ", allocationSize = 5)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ")
+    @SequenceGenerator(name = "LQ_USERS_SEQ", sequenceName = "LQ_USERS_SEQ", allocationSize = 5)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LQ_USERS_SEQ")
     @Column(name ="id")
     Long id;
 

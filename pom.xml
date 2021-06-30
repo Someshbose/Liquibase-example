@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>someshbose.github.io</groupId>
 	<artifactId>liquibase</artifactId>
@@ -16,37 +16,14 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
-<!--	<profiles>-->
-<!--		<profile>-->
-<!--			<id>test-profile</id>-->
-<!--			<activation>-->
-<!--				<activeByDefault>false</activeByDefault>-->
-<!--			</activation>-->
-<!--			<properties>-->
-<!--				<h2.scope>test</h2.scope>-->
-<!--			</properties>-->
-<!--		</profile>-->
-<!--		<profile>-->
-<!--			<id>runtime-profile</id>-->
-<!--			<activation>-->
-<!--				<activeByDefault>true</activeByDefault>-->
-<!--			</activation>-->
-<!--			<properties>-->
-<!--				<h2.scope>runtime</h2.scope>-->
-<!--			</properties>-->
-<!--		</profile>-->
-<!--	</profiles>-->
-
 
 	<profiles>
 		<profile>
-			<id>oracle</id>
+			<id>oracle-db-profile</id>
 			<properties>
 				<spring.profiles.active>oracle</spring.profiles.active>
+				<h2.scope>test</h2.scope>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<dependencies>
 				<dependency>
 					<groupId>com.oracle.ojdbc</groupId>
@@ -56,19 +33,20 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>h2</id>
+			<id>h2-db-runtime</id>
 			<properties>
 				<spring.profiles.active>h2</spring.profiles.active>
+				<h2.scope>runtime</h2.scope>
 			</properties>
-			<activation>
-
-			</activation>
 			<dependencies>
 				<dependency>
-					<groupId>com.h2database</groupId>
-					<artifactId>h2</artifactId>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-devtools</artifactId>
 				</dependency>
 			</dependencies>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 	</profiles>
 
@@ -92,22 +70,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-maven-plugin</artifactId>
-			<version>3.4.1</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.liquibase</groupId>-->
+<!--			<artifactId>liquibase-maven-plugin</artifactId>-->
+<!--			<version>3.4.1</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>com.oracle.ojdbc</groupId>-->
-<!--			<artifactId>ojdbc8</artifactId>-->
-<!--			<version>19.3.0.0</version>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
@@ -122,13 +94,11 @@
 			<artifactId>swagger-annotations</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>2.0.1.Final</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.openapitools</groupId>
 			<artifactId>jackson-databind-nullable</artifactId>
@@ -141,30 +111,15 @@
 			<version>2.3.5</version>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>com.h2database</groupId>-->
-<!--			<artifactId>h2</artifactId>-->
-<!--			<scope>${h2.scope}</scope>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>${h2.scope}</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<profiles>
-						<profile>oracle</profile>
-					</profiles>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
@@ -193,6 +148,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 			<!--TODO-1 Remove the comments from here-->
 			<plugin>
 				<groupId>org.liquibase</groupId>

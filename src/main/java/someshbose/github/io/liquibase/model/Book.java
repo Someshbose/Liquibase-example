@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * Book
  */
 @Entity
-@Table(name = "Book")
+@Table(name = "LQ_BOOK")
 @Getter
 @Setter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -21,8 +21,8 @@ import javax.persistence.Table;
 public class Book{
 
     @Id
-    @SequenceGenerator(name = "BOOK_SEQ", sequenceName = "BOOK_SEQ", allocationSize = 5)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOOK_SEQ")
+    @SequenceGenerator(name = "LQ_BOOK_SEQ", sequenceName = "LQ_BOOK_SEQ", allocationSize = 5)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LQ_BOOK_SEQ")
     private Long id;
 
     private String title;
